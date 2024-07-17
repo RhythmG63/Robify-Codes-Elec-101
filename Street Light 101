@@ -67,4 +67,3 @@ void loop() {
    - **Check Power Supply**: Ensure the Arduino is properly connected to a power source.
    - **Check USB Cable**: If using a USB cable, ensure it is functioning correctly.
 
-By following this documentation, you should be able to successfully assemble and program a smart street light using the provided materials. If you encounter any issues, refer to the troubleshooting section for possible solutions.
