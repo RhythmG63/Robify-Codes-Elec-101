@@ -1,0 +1,89 @@
+Materials Required:
+Hardware Components:
+
+Arduino Uno (or compatible microcontroller board)
+LDR (Light Dependent Resistor)
+LEDs (for simulating street lights)
+Resistors (appropriate values for LEDs, typically 220 ohms)
+Breadboard (for prototyping)
+Jumper wires (for connections)
+Power supply (appropriate for Arduino and LEDs)
+Software Tools:
+
+Arduino IDE (Integrated Development Environment)
+USB cable (for programming Arduino)
+How to Make the Smart Street Light:
+Circuit Assembly:
+
+Connect the LDR to analog pin A0 of the Arduino.
+Connect one leg of each LED through a current-limiting resistor (e.g., 220 ohms) to digital output pins of the Arduino (e.g., pin 2, pin 3, etc.).
+Connect the other leg of each LED to ground (GND) via the breadboard.
+Arduino Code:
+
+cpp
+Copy code
+// Define pins for LEDs
+const int LED_PIN_1 = 2;  // Pin for LED 1
+const int LED_PIN_2 = 3;  // Pin for LED 2
+// Add more LED pins if needed
+
+// Define LDR pin
+const int LDR_PIN = A0;   // Analog pin for LDR
+
+void setup() {
+  // Initialize LED pins as outputs
+  pinMode(LED_PIN_1, OUTPUT);
+  pinMode(LED_PIN_2, OUTPUT);
+  
+  // Initialize LDR pin as input
+  pinMode(LDR_PIN, INPUT);
+  
+  // Initialize serial communication for debugging
+  Serial.begin(9600);
+}
+
+void loop() {
+  // Read LDR sensor value
+  int lightLevel = analogRead(LDR_PIN);
+  
+  // Print LDR sensor value to serial monitor (for debugging)
+  Serial.print("Light level: ");
+  Serial.println(lightLevel);
+  
+  // Check light level and control LEDs accordingly
+  if (lightLevel < 500) { // Adjust threshold according to ambient light conditions
+    digitalWrite(LED_PIN_1, HIGH); // Turn on LED 1
+    digitalWrite(LED_PIN_2, HIGH); // Turn on LED 2
+  } else {
+    digitalWrite(LED_PIN_1, LOW); // Turn off LED 1
+    digitalWrite(LED_PIN_2, LOW); // Turn off LED 2
+  }
+  
+  delay(1000); // Adjust delay time as needed
+}
+Explanation of the Arduino Code:
+const int LED_PIN_1 = 2;, const int LED_PIN_2 = 3;: These lines define the digital pins to which the LEDs are connected. Adjust these pins based on your actual connections.
+
+const int LDR_PIN = A0;: This line defines the analog pin to which the LDR sensor is connected (A0 in this case).
+
+void setup() { ... }: This function runs once when you power up or reset the Arduino board. It initializes the pins for LEDs (as outputs) and LDR (as input), and starts serial communication for debugging purposes.
+
+void loop() { ... }: This function runs repeatedly after setup() is finished. It reads the analog value from the LDR sensor using analogRead(LDR_PIN) and stores it in lightLevel. It then prints this value to the serial monitor.
+
+if (lightLevel < 500) { ... } else { ... }: This conditional statement checks the lightLevel value read from the LDR sensor. If the light level is below 500 (adjust as needed based on ambient light conditions), it turns on both LEDs by setting their respective pins (LED_PIN_1 and LED_PIN_2) to HIGH. Otherwise, it turns off both LEDs by setting their pins to LOW.
+
+delay(1000);: This line adds a delay of 1000 milliseconds (1 second) before the loop() function repeats. Adjust this delay time based on how frequently you want the Arduino to read and react to light levels.
+
+Troubleshooting:
+Issue: LEDs not lighting up according to light conditions.
+
+Solution: Check the wiring of LEDs and resistors. Ensure LEDs are connected with the correct polarity (long leg to Arduino pin through resistor, short leg to ground).
+Issue: LDR readings are not changing with light conditions.
+
+Solution: Verify LDR connections. Ensure it's connected to the correct analog pin (A0) on the Arduino. Check LDR orientation and exposure to light.
+Issue: Arduino not responding or not uploading code.
+
+Solution: Check USB cable connection. Ensure Arduino IDE is correctly configured with the correct board and port. Restart Arduino IDE and try uploading the code again.
+Issue: Unexpected behavior with LEDs (e.g., flickering, not turning off).
+
+Solution: Double-check resistor values. Ensure each LED has its own resistor connected in series. Verify Arduino pins are correctly configured as outputs and properly initialized in the setup() function.
