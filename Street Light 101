@@ -5,7 +5,7 @@
 2. **LDR Sensor**: Light Dependent Resistor to detect ambient light.
 3. **LEDs**: Light Emitting Diodes to simulate street lights.
 4. **Power Supply**: To power the Arduino and LEDs.
-5. **Jumper Wires**: For making connections.
+5. **Jumper Wires**: For making connections
 6. **Breadboard**: For prototyping and connecting components.
 
 #### Assembly Instructions
